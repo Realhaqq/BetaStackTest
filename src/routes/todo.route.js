@@ -9,6 +9,9 @@ const {
 
 
 router.get('/todos', withAuth, getAllTodos);
+router.post('/todos', withAuth, createTodo);
+router.delete('/todos/:id', withAuth, deleteTodo);
+router.put('/todos/:id', withAuth, updateTodo);
 
 
 module.exports = router;

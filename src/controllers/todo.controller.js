@@ -11,6 +11,21 @@ exports.getAllTodos = async (req, res) => {
     }
 }
 
+exports.getTodo = async (req, res) => {
+    if (!req.params.id) {
+        res.status(400).json({ message: 'Id is required' });
+    }
+
+    try {
+        const response = await jsonplaceholderApi.getTodo(req.params.id);
+        res.status(200).json(response);
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+
 exports.createTodo = async (req, res) => {
     if (!req.body.title) {
         return res.status(400).send({

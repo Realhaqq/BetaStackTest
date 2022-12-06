@@ -24,6 +24,30 @@ async function getAllTodos() {
 
     return response??console.log('Error: no data returned!')
 }
+
+const getTodo = async (id) => {
+    const options = {
+        url: `${baseUrl}/todos/${id}`,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    const response = new Promise((resolve, reject) => {
+        request(options, (error, response, body) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(JSON.parse(body));
+            }
+        });
+
+    });
+
+    return response ?? console.log('Error: no data returned!')
+    
+}
     
 
 const createTodo = async (title) => {
@@ -104,6 +128,7 @@ const updateTodo = async (id, title) => {
 
 module.exports = {
     getAllTodos,
+    getTodo,
     createTodo,
     deleteTodo,
     updateTodo
